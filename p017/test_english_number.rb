@@ -1,6 +1,14 @@
 require File.expand_path('../english_number', __FILE__)
 
 describe EnglishNumber do
+  it 'should error' do
+    expect { EnglishNumber.new(-1).name }.to raise_error NotImplementedError
+  end
+
+  it 'should error for no integer' do
+    expect { EnglishNumber.new(1.23).name }.to raise_error NotImplementedError
+  end
+
   it 'should name 1' do
     EnglishNumber.new(1).name.should == 'one'
   end
