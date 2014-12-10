@@ -1,3 +1,4 @@
+# String with cached length
 class BufferString
   attr_reader :length
 
@@ -6,7 +7,7 @@ class BufferString
     @length = 0
   end
 
-  def << (suffix)
+  def <<(suffix)
     @string << suffix
     @length += suffix.length
   end
@@ -20,6 +21,7 @@ class BufferString
   end
 end
 
+# p040
 class ChampernownesConstant
   def initialize(length)
     @string = BufferString.new
@@ -35,11 +37,10 @@ class ChampernownesConstant
   end
 end
 
-c = ChampernownesConstant.new(10 ** 6)
+c = ChampernownesConstant.new(10**6)
 product = 1
 (0..6).each do |exponent|
-  position = 10 ** exponent
+  position = 10**exponent
   product *= c.get_digit(position)
 end
 puts product
-

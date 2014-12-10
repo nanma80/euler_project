@@ -18,5 +18,3 @@ names.each_with_index do |name, index|
 end
 
 p sum
-
-
