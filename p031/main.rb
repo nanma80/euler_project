@@ -10,7 +10,6 @@ ways[0].add([0] * types.length)
 LIMIT = 200
 
 (1..LIMIT).each do |value|
-  p value
   set = Set.new
   types.each_with_index do |type, index|
     base = value - type
