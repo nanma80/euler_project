@@ -22,10 +22,12 @@ end
 
     next unless is_pentagonal?(sum)
 
-    sum2 = p1 * 2 + p2
-    if is_pentagonal?(sum2)
-      p [pentagonal(n1), pentagonal(n2), sum, sum2]
-      exit
+    candidate_sums = [p1 * 2 + p2, p1 + p2 * 2]
+    candidate_sums.each do |sum2|
+      if is_pentagonal?(sum2)
+        p [n1, n2, pentagonal(n1), pentagonal(n2), sum, sum2]
+        exit
+      end
     end
   end
 end
