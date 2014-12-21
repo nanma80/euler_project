@@ -5,7 +5,7 @@ describe 'Card' do
     card = Card.new('AC')
     expect(card.value).to eq :A
     expect(card.suit).to eq :C
-    expect(card.string).to eq 'AC'
+    expect(card.input_string).to eq 'AC'
   end
 
   it 'should return numeric value' do

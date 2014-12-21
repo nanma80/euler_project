@@ -1,5 +1,5 @@
 class Card
-  attr_reader :value, :suit, :string
+  attr_reader :value, :suit, :input_string
 
   def initialize(input)
     raise "Incorrect input length #{input}" if input.length != 2
@@ -8,7 +8,7 @@ class Card
     unless self.class.values.include?(value) && self.class.suits.include?(suit)
       raise "Input not recognized #{input}" 
     end
-    @string = input
+    @input_string = input
   end
 
   def numeric
@@ -16,7 +16,7 @@ class Card
   end
 
   def to_s
-    @string
+    @input_string
   end
 
   class << self

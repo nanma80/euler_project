@@ -7,9 +7,10 @@ count = 0
 
 File.open(filename).each do |line|
   game = Game.new(line.chomp)
-  if game.player_1_win?
+  if game.player_1_wins?
     count += 1
   end
 end
 
 p count
+
