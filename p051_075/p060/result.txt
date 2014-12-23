@@ -1,0 +1,11 @@
+Cached 1229 primes under 10000
+Generated 18176 pairs
+Level 3
+Found 9904 cliques in level 3
+Level 4
+Found 294 cliques in level 4
+Level 5
+Found 1 cliques in level 5
+#<Set: {[13, 5197, 5701, 6733, 8389]}>
+Min sum is
+26033
