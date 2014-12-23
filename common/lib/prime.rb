@@ -44,7 +44,7 @@ module Prime
       if key < @prime_check.length
         @prime_check[key]
       else
-        raise RangeError, "#{key} is not in the cached range from 0 to #{limit}"
+        key.is_prime?
       end
     end
   end

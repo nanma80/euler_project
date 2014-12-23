@@ -11,7 +11,7 @@ max_count_sum = 0
 
 (0..index_limit).each do |start_index|
   sum = primes[start_index]
-
+  
   (1..(index_limit - start_index)).each do |count|
     sum += primes[start_index + count]
     break if sum > limit

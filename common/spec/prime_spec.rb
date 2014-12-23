@@ -29,8 +29,6 @@ describe 'Prime Cache' do
   end
 
   it 'should check if a large number is prime' do
-    expect { 
-      @primes.is_prime?(11)
-      }.to raise_error(RangeError)
+    expect(@primes.is_prime?(11)).to be true
   end
 end
