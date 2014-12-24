@@ -1,3 +1,5 @@
+require 'pp'
+
 def neighbors(state)
   output = []
   state.length.times do |i|
@@ -41,7 +43,7 @@ num_iterations.times do |iteration|
     end
   end
   steps = new_steps
-  p steps_avg(steps)
 end
 
-p steps
+p steps_avg(steps)
+pp steps
