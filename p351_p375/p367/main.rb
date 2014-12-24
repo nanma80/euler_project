@@ -24,19 +24,25 @@ def steps_avg(steps)
   step_sum / steps.length
 end
 
-original_state = (1..5).to_a
-states = original_state.permutation.to_a
+original_state = (1..11).to_a
+states = []
+original_state.permutation do |perm|
+  states << perm
+end
+
+puts "Number of states: #{states.length}"
 
 steps = {}
 states.each do |state|
-  steps[state] = 100.0
+  steps[state] = 10.0
 end
 steps[original_state] = 0
 
-num_iterations = 2000
+num_iterations = 200
 
 
 num_iterations.times do |iteration|
+  puts "Starting interation #{iteration}"
   new_steps = {}
   new_steps[original_state] = 0
   states.each do |state|
