@@ -4,6 +4,23 @@ class Integer
   end
 end
 
+def min_solution(d)
+  min_solution_v1(d)
+end
+
+def min_solution_v1(d)
+  return nil if d.is_square?
+
+  limit_y = 10 ** 6
+  (1..limit_y).each do |y|
+    if (1 + d * y * y).is_square?
+      x = Math.sqrt((1 + d * y * y)).to_i
+      puts "(x, y): #{x}, #{y}"
+      return x
+    end
+  end
+end
+
 def max_d(candidates = nil, max_x = 10 ** 6)
   range = 1_000
   candidates = candidates || (1..range).to_a
@@ -22,7 +39,7 @@ def max_d(candidates = nil, max_x = 10 ** 6)
   end
 end
 
-p max_d
+# p max_d
 
 # limit_d = 1000
 # max_x = 0
@@ -41,4 +58,4 @@ p max_d
 # p max_d
 
 
-# p min_solution(61)
+p min_solution(5)
