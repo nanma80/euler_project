@@ -1,3 +1,5 @@
+require '../../common'
+
 class Orbit
   attr_reader :orbit_structure
 
@@ -16,6 +18,39 @@ class Orbit
       output += (content[1..-1] + content[0..0])
     end
     Permutation.new(output)
+  end
+
+  def neighbors
+    return @neighbors unless @neighbors.nil?
+
+    @neighbors = {}
+    before_dedup = sample_perm.neighbors.map(&:orbit)
+    before_dedup.each do |orbit|
+      key = orbit.to_a
+      @neighbors[key] = (@neighbors[key] || 0) + 1
+    end
+    @neighbors
+  end
+
+  def to_a
+    @orbit_structure
+  end
+
+  def weight
+    # number of permutations with this orbit structure
+    return @weight unless @weight.nil?
+
+    sum = orbit_structure.inject(:+)
+    @weight = sum.factorial
+    orbit_structure.each do |count|
+      @weight /= count
+    end
+
+    orbit_structure.uniq.each do |uniq_period|
+      @weight /= orbit_structure.count(uniq_period).factorial
+    end
+
+    @weight
   end
 
   class << self

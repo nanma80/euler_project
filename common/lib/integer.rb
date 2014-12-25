@@ -8,4 +8,15 @@ class Integer
     end
     true
   end
+
+  def factorial
+    return 0 if self < 0
+    return 1 if self <= 1
+    (1..self).inject(:*)
+  end
+
+  def choose(k)
+    return 0 if k < 0 || k > self
+    self.factorial / k.factorial / (self - k).factorial
+  end
 end
