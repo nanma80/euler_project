@@ -6,7 +6,7 @@ class Cubes
   end
 
   def targets
-    @targets ||= (1..9).to_a.map {|n| "%.2d" % (n * n)}
+    @targets ||= (1..9).to_a.map {|n| "%.2d" % (n * n)}.map{|s| s.gsub('9', '6')}
   end
 
   def assignments
