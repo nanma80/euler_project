@@ -3,6 +3,9 @@ class Constraint
   
   def initialize(cells)
     @cells = cells
+    cells.each do |cell|
+      cell.add_constraint(self)
+    end
   end
 
   def violated?
