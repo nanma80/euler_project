@@ -31,4 +31,10 @@ describe 'Prime Cache' do
   it 'should check if a large number is prime' do
     expect(@primes.is_prime?(11)).to be true
   end
+
+  it 'should check if a very large number is prime' do
+    expect(@primes.is_prime?(107)).to be true
+    expect(@primes.is_prime?(108)).to be false
+  end
+
 end

@@ -41,8 +41,13 @@ module Prime
     end
 
     def is_prime?(key)
-      if key < @prime_check.length
+      if key < limit
         @prime_check[key]
+      elsif key < limit * limit
+        primes.each do |prime|
+          return false if key % prime == 0
+        end
+        true
       else
         key.is_prime?
       end
