@@ -22,7 +22,7 @@ good = []
     end
   end
 end
-
+good.uniq!
 p good
 p good.length
 p good.inject(:+)
