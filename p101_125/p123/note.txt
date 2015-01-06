@@ -1,0 +1,9 @@
+For even n,
+
+(p_n - 1)^n + (p_n + 1)^n = 2 mod p_n^2
+
+For odd n = (2k + 1), k >= 0,
+
+(p_n - 1)^n + (p_n + 1)^n = 2 n p_n mod p_n^2
+
+If sufficiently large n, p_n > 2 n, then r = 2 n p_n
