@@ -1,7 +1,7 @@
 def each_cuboid(limit)
   (1..limit).each do |a|
-    (a..limit).each do |b|
-      (b..limit).each do |c|
+    (a..2 * limit).each do |b|
+      (b..3 * limit).each do |c|
         yield [a, b, c]
       end
     end
@@ -21,13 +21,15 @@ end
 count_cache = {}
 target = 1000
 loop_count = 0
-limit = 200
+limit = 100
+count_limit = 10 ** 6
 
 each_cuboid(limit) do |cuboid|
   loop_count += 1
   print "#{cuboid}\r" if loop_count % 1000 == 0
   (0..limit).each do |layer|
     count = cube_count(cuboid, layer)
+    break if count > count_limit
     count_cache[count] = (count_cache[count] || 0) + 1
   end
 end
@@ -37,7 +39,7 @@ puts
 target_count = []
 max_appearance = 0
 count_cache.each do |count, appearance|
-  if appearance == target
+  if appearance > target * 0.8 && appearance <= target
     target_count << count
   end
 
@@ -46,6 +48,7 @@ count_cache.each do |count, appearance|
   end
 end
 
+p target_count
 p target_count.min
 p max_appearance
 

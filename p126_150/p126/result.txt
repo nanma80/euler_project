@@ -1,0 +1,4 @@
+18522
+
+Used v1.rb to generate a list of candidates.
+Then, use v3.rb to find the best one out of the candidates.
