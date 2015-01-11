@@ -41,8 +41,8 @@ def process_a(a, limit, all_factors)
 end
 
 start_time = Time.new
-# limit = 10 ** 3
-limit = 120000
+limit = 10 ** 3
+# limit = 120000
 
 all_factors = all_factors(limit)
 total = 0
