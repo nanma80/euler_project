@@ -1,5 +1,5 @@
 class Board
-  attr_reader :limit
+  attr_reader :limit, :coordinates_to_value, :value_to_coordinates
 
   def initialize(limit)
     @limit = limit
