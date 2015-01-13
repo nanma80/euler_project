@@ -1,57 +1,65 @@
-require 'set'
+require '../../common'
 
-def triples(limit)
-  output = Set.new
-
-  m_limit = Math.sqrt(limit).to_i
-
-  (-5..m_limit-1).each do |m|
-    next if m == 0
-    (m+1..m_limit).each do |n|
-      next if n == 0
-      next if (m - n) % 2 == 0
-
-      a = (m * m + 2 * m * n - n * n).abs
-      b = (- m * m + 2 * m * n + n * n).abs
-      c = m * m + n * n
-      break if c > limit
-      a, b = b, a if a > b
-      
-      if c % 5 != 0
-        original_triplet = [a * 25, b * 25, c * 25]
-      elsif c % 25 != 0
-        original_triplet = [a * 5, b * 5, c * 5]
-      else
-        original_triplet = [a, b, c]
-      end
-
-      if !(output.include?(original_triplet))
-        triplet = original_triplet.dup
-        while triplet.last <= limit
-          output << triplet
-          triplet = [triplet, original_triplet].transpose.map {|arr| arr.inject(:+)}
-        end
-      end
+def each_seed(limit, special_primes)
+  special_primes.permutation(3) do |perm|
+    seed = (perm[0] ** 3) * (perm[1] ** 2) * perm[2]
+    if seed <= limit
+      yield seed
     end
   end
-  output
 end
 
-def triples_by_c(limit)
-  output = {}
-  triples(limit).each do |triple|
-    c = triple.last
-    output[c] = (output[c] || []) + [triple]
+def expand_seed(limit, seed, other_primes)
+  if seed > limit
+    return
   end
-  output
+
+  if other_primes.empty?
+    return yield seed
+  end
+
+  prime = other_primes[0]
+  rest = other_primes[1..-1]
+
+  current = seed
+  while current <= limit
+    expand_seed(limit, current, rest) do |number|
+      yield number
+    end
+    current *= prime
+  end
 end
 
-limit = (10 ** 6)
-c_values = []
-triples_by_c(limit).each do |c, triples|
-  if triples.length == 52
-    c_values << c
+def main
+  limit = 3 * 10 ** 6
+  prime_limit = limit / (5 ** 3) / (13 ** 2)
+
+  primes = Prime::Cache.new(prime_limit).primes
+  puts "Total number of primes: #{primes.length}"
+
+  special_primes = primes.select do |prime|
+    prime % 4 == 1
   end
+  puts "Number of special primes: #{special_primes.length}"
+
+  other_primes = primes.select do |prime|
+    prime % 4 != 1
+  end
+  puts "Number of other primes: #{other_primes.length}"
+
+  sum = 0
+  count = 0
+  # values = []
+  each_seed(limit, special_primes) do |seed|
+    expand_seed(limit, seed, other_primes) do |n|
+      # values << n
+      count += 1
+      sum += n
+    end
+  end
+  puts "Number of values: #{count}"
+  puts "Sum of values: #{sum}"
 end
-p c_values
-p c_values.length
+
+main
+

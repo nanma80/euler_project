@@ -1,4 +1,4 @@
-limit = 100
+limit = 10 ** 5
 (1..limit-1).each do |a|
   (a+1..limit).each do |b|
     if (2 * a * b) % (a + b) == 0
@@ -6,7 +6,7 @@ limit = 100
       next if 2 * a - n <= 0 || 2 * b - n <= 0
       # p [a, b, 2*a*b, a+b, (b % a == 0), b/a]
       # p [a, b, (2 * a * b) / (a + b)]
-      p [2 * a - n, 2 * b - n, n]
+      p [2 * a - n, 2 * b - n, n] if n == 10 ** 4
     end
   end
 end

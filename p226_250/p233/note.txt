@@ -1,0 +1,26 @@
+Normal pythagorean (a, b, c):
+a^2 + b^2 = c^2
+
+m = b + a
+n = b - a
+
+Then
+
+m^2 + n^2 = 2c^2
+So the possible values of c is as same as the possible values of pythagorean hypotenuses.
+
+Related sequences:
+http://oeis.org/A009000
+http://oeis.org/A009003
+http://oeis.org/A083025 (similar but not the same)
+http://oeis.org/A046080
+http://oeis.org/A046109 (exact question)
+
+
+Let n = 2^e_2 * product_i p_i^f_i * product_j q_j^g_j where p_i == 1 mod 4, q_j == 3 mod 4; then a(n) = (1/2)*(product_i (2*f_i + 1) - 1). - Beiler, corrected
+
+We need a(n) = 52 so that a(n) * 8 + 4 = 420
+
+(1/2)*(product_i (2*f_i + 1) - 1) = 52
+=> product_i (2*f_i + 1) = 105 = 3 * 5 * 7
+=> values of f_i: 1, 2, 3
