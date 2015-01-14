@@ -1,0 +1,6 @@
+http://oeis.org/A099679
+http://oeis.org/A084681
+
+We can either test divisibility of 11111...1
+or divisibility of 9999...9
+or if 10^k % factor == 1
