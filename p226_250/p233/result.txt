@@ -1,0 +1,7 @@
+Limit: 100000000000
+Prime limit: 4733727
+Total number of primes: 331176
+Number of special primes: 165549
+Number of other primes: 165627
+Number of values: 5422629
+Sum of values: 271204031455541309

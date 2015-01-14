@@ -34,3 +34,6 @@ found_values.each do |n|
   p (histogram.values.inject(1) {|mem, var| mem *= (2 * var + 1)} - 1)/2
   p [n, n.factors]
 end
+
+p found_values.inject(:+) 
+# sum: 105164200
