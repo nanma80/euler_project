@@ -1,0 +1,6 @@
+10000: 144
+Empty after 19974 iterations
+Upper bound: 20000
+Lower bound: 4
+29
+149253
