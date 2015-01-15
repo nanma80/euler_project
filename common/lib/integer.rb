@@ -19,4 +19,18 @@ class Integer
     return 0 if k < 0 || k > self
     self.factorial / k.factorial / (self - k).factorial
   end
+
+  def mod_pow(exponent, mod)
+    binary = exponent.to_s(2).reverse.split('').map(&:to_i)
+    output = 1
+    powermod = self % mod
+    binary.each do |bit|
+      if bit == 1
+        output = (output * powermod) % mod
+      end
+
+      powermod = (powermod * powermod) % mod
+    end
+    output
+  end
 end

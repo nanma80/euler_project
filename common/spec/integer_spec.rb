@@ -27,4 +27,10 @@ describe 'Integer' do
     expect(3.choose(1)).to eq 3
     expect(4.choose(2)).to eq 6
   end
+
+  it 'should compute modpow' do
+    expect(13.mod_pow(0, 7)).to eq ((13 ** 0) % 7)
+    expect(3.mod_pow(7, 5)).to eq ((3 ** 7) % 5)
+    expect(2.mod_pow(13, 7)).to eq ((2 ** 13) % 7)
+  end
 end
