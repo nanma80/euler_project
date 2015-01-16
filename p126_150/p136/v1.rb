@@ -43,7 +43,7 @@ class Integer
 end
 
 def main
-  limit = 1 * (10 ** 2)
+  limit = (10 ** 2)
   prime_cache = Prime::Cache.new(limit)
   puts "Cache ready"
 
@@ -62,6 +62,20 @@ def main
 
     if count == 1
       count_single_solution += 1
+      if n % 4 == 1 || n % 4 == 2
+        raise n
+      elsif n % 4 == 3
+        p [3, n, prime_cache.is_prime?(n)]
+        raise n unless prime_cache.is_prime?(n)
+      elsif n % 4 == 0 && n % 8 != 0
+        p [4, n, n/4]
+        raise n unless prime_cache.is_prime?(n/4) || n/4 == 1
+      elsif n % 16 == 0
+        p [16, n, n/16]
+        raise n unless prime_cache.is_prime?(n/16) || n/16 == 1
+      else
+        raise n
+      end
     end
   end
 
