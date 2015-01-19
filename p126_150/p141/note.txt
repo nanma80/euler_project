@@ -1,0 +1,30 @@
+d, q, r in a geometric sequence
+
+r < d always. r != 0
+either q, r, d
+or r, q, d
+or r, d, q
+
+Three possibilities
+qd = r^2
+rd = q^2
+rq = d^2
+
+n = q * d + r
+We can enumerate geometric sequences and compute n
+
+Geometric sequence
+a, b, c
+n = a * c + b = b^2 + b = b * (b + 1). 
+This value can't be a square
+or
+n = b * c + a = bc + b^2/c = b(c + b/c)
+=sqrt(ac)*c + a
+
+c > a
+n > a^2 + a
+
+b = ar
+c = ar^2
+
+n = a^2 r^3 + a
