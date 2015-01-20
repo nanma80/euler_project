@@ -20,6 +20,7 @@ This value can't be a square
 or
 n = b * c + a = bc + b^2/c = b(c + b/c)
 =sqrt(ac)*c + a
+=b^3/a + a
 
 c > a
 n > a^2 + a

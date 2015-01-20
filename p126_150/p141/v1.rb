@@ -1,4 +1,4 @@
-limit = 10 ** 7
+limit = 10 ** 5
 
 sum = 0
 (1..Math.sqrt(limit)).each do |a|
