@@ -1,0 +1,15 @@
+Caching completed
+Found good n: 10
+Found good n: 315410
+Found good n: 927070
+Found good n: 2525870
+Found good n: 8146100
+Found good n: 16755190
+Found good n: 39313460
+Found good n: 97387280
+Found good n: 119571820
+Found good n: 121288430
+Found good n: 130116970
+Found good n: 139985660
+Sum of good n's: 676333270
+873.420000   1.760000 875.180000 (875.763420)

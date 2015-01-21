@@ -44,8 +44,10 @@ module Prime
       if key < limit
         @prime_check[key]
       elsif key < limit * limit
+        key_sqrt = Math.sqrt(key).to_i
         primes.each do |prime|
           return false if key % prime == 0
+          break if prime > key_sqrt
         end
         true
       else

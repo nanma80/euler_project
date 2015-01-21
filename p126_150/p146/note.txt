@@ -1,0 +1,25 @@
+n^2 must be even, otherwise if it's odd, n^2 + 3 will be even
+
+n^2 must = 1 mod 3, otherwise:
+ - if = 0 mod 3, +3
+ - if = 2 mod 3, +7
+
+n^2 must = 0 mod 5, otherwise: 
+ - if = 1 mod 5, n^2 + 9 = 0 mod 5
+ - if = 2 mod 5, + 13
+ - if = 3 mod 5, + 7
+ - if = 4 mod 5, + 1
+
+n = 30 * m + 10 or 30 * m + 20, m >= 0 integer
+
+n^2 must = 2 or 3 mod 7, otherwise:
+ - if = 0 mod 7, +7
+ - if = 1 mod 7, +13
+ - if = 4 mod 7, +3
+
+210 * m + 10
+210 * m + 80
+210 * m + 130
+210 * m + 200
+
+
