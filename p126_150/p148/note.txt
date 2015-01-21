@@ -1,0 +1,23 @@
+modulo 2:
+http://oeis.org/A048967
+
+modulo 3:
+http://oeis.org/A062296
+http://oeis.org/A006047
+
+mod 5:
+http://oeis.org/A194459
+
+
+expand n in base 7, count the occurrences of digits
+
+product_{digit} (digit + 1) ** occurrence_count(digit)
+
+sum over all numbers up to k digits base 7:
+0 ~ 6: 28 = 1 + 2 + ... + 7
+7 ~ 13(10 ~ 16): 56 = 2 * 28
+up to 7 ** 2: 28 ** 2
+
+
+up to 7 ** 5:
+17210368 = 28 ** 5
