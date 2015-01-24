@@ -34,6 +34,7 @@ class Agent
   def reachable_count
     iterate
     p visited
+    p visited.inject(:+)
     visited.length
   end
 
@@ -67,8 +68,8 @@ class Agent
     operators.each_with_index do |operator, operation_index|
       path << changing_concat.dup
       position_index = indices[operation_index]
-      first_number = concat[position_index]
-      second_number = concat[position_index + 1]
+      first_number = changing_concat[position_index]
+      second_number = changing_concat[position_index + 1]
       result = 0
 
       case operator
@@ -79,12 +80,16 @@ class Agent
       when 2
         result = first_number * second_number
       when 3
+        if second_number == 0
+          return nil
+        end
         result = 1.0 * first_number / second_number
       end
       
       changing_concat[position_index] = result
       changing_concat.delete_at(position_index + 1)
     end
+
     changing_concat.first
   end
 
