@@ -1,0 +1,21 @@
+At time t, the particles are on the surface of a sphere centered at
+yc(t) = y0 - 1/2 * g * t^2
+with radius
+r(t) = v0 * t
+
+x^2 + (y - yc(t))^2 = r(t)^2
+
+y can go up to y_max = y0 + v0^2/(2g)
+for any y <= y_max, we need to find out the maximum x that can be reached by the particles (spheres).
+
+For any y, the max x is achieved at moment t_max.
+t_max^2 =  2v0^2/g^2 + 2(y0 - y)/g
+
+x_max^2 = a - by
+where
+a = (v0 ** 4) / (g * g) + 2 * v0 * v0 * y0 / g
+b = 2 * v0 * v0 / g
+
+So the volume is
+integral from y=0 to y=y_max of PI x^2 dy
+= PI(a * y_max - 1/2 * b * y_max^2)
