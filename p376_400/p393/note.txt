@@ -1,0 +1,11 @@
+When size = odd, no solution (to prove it, think of checkerboard)
+size 4:
+88
+0.01 seconds
+
+size 6:
+207408 (loop 530k times)
+64 seconds
+
+
+http://oeis.org/A216678

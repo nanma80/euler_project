@@ -98,10 +98,10 @@ class Board
 end
 
 def main
-  size = 6
+  size = 4
   queue = [ Board.new(size) ]
   
-  count = 10 ** 8
+  count = 10 ** 12
   count.times do |count_index|
     board_to_process = queue[0]
     nil_coord = board_to_process.first_nil
