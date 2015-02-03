@@ -2,8 +2,8 @@ require '../../common'
 require 'benchmark'
 
 def main
-  limit = 5 * (10 ** 5)
-  # limit = 10 ** 3
+  # limit = 5 * (10 ** 5)
+  limit = 10 ** 4
   prime_limit = (limit * 1.42).to_i
   prime_cache = Prime::Cache.new(prime_limit)
   primes = prime_cache.primes.select {|prime| prime % 8 == 1 || prime % 8 == 7}
@@ -25,6 +25,7 @@ def main
 
     if is_prime
       count += 1
+      # p n
     end
   end
 
