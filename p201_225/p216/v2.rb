@@ -1,4 +1,4 @@
-require './modular_sqrt'
+require './special_modular_sqrt'
 require 'benchmark'
 
 def main
@@ -10,27 +10,22 @@ def main
   prime_length = primes.length
   puts "Primes cached. Length: #{prime_length}"
 
-
   is_prime_per_n = [true] * (limit + 1)
   [0, 1].each do |exception_index|
     is_prime_per_n[exception_index] = false
   end
 
   primes.each_with_index do |prime, prime_index|
-    puts "#{prime_index}/#{prime_length}" if prime_index % (10 ** 4) == 0 || prime_index < 1000
+    # puts "#{prime_index}/#{prime_length}" if prime_index % (10 ** 4) == 0 || prime_index < 1000
     sqrt1 = modular_sqrt((prime + 1)/2, prime)
+
     [sqrt1, prime - sqrt1].each do |sqrt|
       raise "#{prime}'s sqrt is 0" if sqrt == 0
       if sqrt == 1
         sqrt += prime
       end
       
-      while sqrt <= limit && (2 * sqrt * sqrt - 1 < prime)
-        is_prime_per_n[sqrt] = false
-        sqrt += prime
-      end
-
-      if (2 * sqrt * sqrt - 1 != prime)
+      if sqrt <= limit && (2 * sqrt * sqrt - 1 != prime)
         is_prime_per_n[sqrt] = false
       end
       sqrt += prime
