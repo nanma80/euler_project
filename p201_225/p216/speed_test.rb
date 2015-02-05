@@ -1,7 +1,10 @@
 require './special_modular_sqrt'
 require 'benchmark'
+require 'set'
 
 def main
+  GC::Profiler.enable
+
   limit = 10 ** 5
   # limit = 5 * (10 ** 7)
   prime_limit = (limit * Math.sqrt(2)).to_i
@@ -10,9 +13,18 @@ def main
   prime_length = primes.length
   puts "Primes cached. Length: #{prime_length}"
 
+  start_time = Time.new
+  useless = [true] * (10 ** 7)
+  useless = nil
+  p Time.new - start_time
+
+  GC.disable
   primes.each_with_index do |prime, prime_index|
     sqrt1 = modular_sqrt((prime + 1)/2, prime)
   end
+  GC.enable
+
+  puts GC::Profiler.result
 end
 
 puts Benchmark.measure { main }
