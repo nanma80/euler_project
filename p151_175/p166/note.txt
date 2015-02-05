@@ -1,0 +1,50 @@
+sage:
+
+var('x00 x01 x02 x03')
+var('x10 x11 x12 x13')
+var('x20 x21 x22 x23')
+var('x30 x31 x32 x33')
+var('y')
+
+eq_row0 = x00 + x01 + x02 + x03 == y
+eq_row1 = x10 + x11 + x12 + x13 == y
+eq_row2 = x20 + x21 + x22 + x23 == y
+eq_row3 = x30 + x31 + x32 + x33 == y
+eq_col0 = x00 + x10 + x20 + x30 == y
+eq_col1 = x01 + x11 + x21 + x31 == y
+eq_col2 = x02 + x12 + x22 + x32 == y
+eq_col3 = x03 + x13 + x23 + x33 == y
+eq_diag0= x00 + x11 + x22 + x33 == y
+eq_diag1= x03 + x12 + x21 + x30 == y
+
+solve([eq_row0, eq_row1, eq_row2, eq_row3, eq_col0, eq_col1, eq_col2, eq_col3, eq_diag0, eq_diag1], x00, x01, x02, x03, x10, x11, x12, x13, x20, x21, x22, x23, x30, x31, x32, x33, y)
+
+[[x00 == r10 + r3 - r4, x01 == -r10 + r4 + r5 - r6 + r9, x02 == r10 - r5 + r6 + r7 - r9, x03 == r6, x10 == -r3 + r4 - r7 + r8 + r9, x11 == r6 + r7 - r9, x12 == r3, x13 == r10 + r3 - r4 + r7 - r8, x20 == r3 + r6 + r7 - r8 - r9, x21 == r10, x22 == r9, x23 == r8, x30 == r7, x31 == r10 + r3 - r4 - r5 + r6, x32 == r5, x33 == r4, y == r10 + r3 + r6 + r7]]
+
+x12 == r3
+x33 == r4
+x32 == r5
+x03 == r6
+x30 == r7
+x23 == r8
+x22 == r9
+x21 == r10
+eight free variables
+
+x00 == r10 + r3 - r4
+x01 == -r10 + r4 + r5 - r6 + r9
+x02 == r10 - r5 + r6 + r7 - r9
+x10 == -r3 + r4 - r7 + r8 + r9
+x11 == r6 + r7 - r9
+x13 == r10 + r3 - r4 + r7 - r8
+x20 == r3 + r6 + r7 - r8 - r9
+x31 == r10 + r3 - r4 - r5 + r6
+y == r10 + r3 + r6 + r7
+
+-------------
+Choose free variables to be:
+x00, x01, x02, x03, x10, x11, x12, x20
+
+solve([eq_row0, eq_row1, eq_row2, eq_row3, eq_col0, eq_col1, eq_col2, eq_col3, eq_diag0, eq_diag1], x13, x21, x22, x23, x30, x31, x32, x33, y)
+
+[[x13 == x00 + x01 + x02 + x03 - x10 - x11 - x12, x21 == x00 - x03 + x10 - x12 + x20, x22 == x01 + x02 + 2*x03 - x10 - x11 - x20, x23 == x11 + x12 - x20, x30 == x01 + x02 + x03 - x10 - x20, x31 == x02 + 2*x03 - x10 - x11 + x12 - x20, x32 == x00 - x02 - x03 + x10 + x11 - x12 + x20, x33 == -x03 + x10 + x20, y == x00 + x01 + x02 + x03]]
