@@ -31,7 +31,7 @@ def blocks(limit)
   blocks
 end
 
-limit = 80
+limit = 35
 blocks = blocks(limit)
 blocks.each do |reducable|
   p [reducable.first, reducable.first.to_f, reducable.last]
