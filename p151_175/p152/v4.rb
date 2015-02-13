@@ -52,11 +52,28 @@ class Agent
 
     greatest_prime_factor = greatest_factor(gap_denominator, primes)
 
-    branching_index = greatest_prime_factor
-    until input_state[branching_index].nil?
-      branching_index += greatest_prime_factor
+    if greatest_prime_factor == 2
+      branching_index = 2
+      until input_state[branching_index].nil?
+        branching_index *= 2
+        break if branching_index > limit
+      end
       if branching_index > limit
-        return
+        branching_index = 2
+        until input_state[branching_index].nil?
+          branching_index += 1
+          if branching_index > limit
+            return
+          end
+        end
+      end
+    else
+      branching_index = greatest_prime_factor
+      until input_state[branching_index].nil?
+        branching_index += greatest_prime_factor
+        if branching_index > limit
+          return
+        end
       end
     end
 
@@ -68,7 +85,7 @@ class Agent
       if new_state
         new_current_sum += Rational(1, branching_index * branching_index)
         if new_current_sum == target
-          puts "Found: #{print(candidate) + [input_state_with_sums.first.length]}"
+          puts "Found: #{print(candidate)}"
           @solutions << print(candidate)
           return
         elsif new_current_sum > target
@@ -86,10 +103,11 @@ class Agent
   end
 end
 
-def count_given_last(last)
-  limit = last - 1
+def main
+  limit = 55
 
-  target = Rational(1, 2) - Rational(1, last * last)
+  target = Rational(1, 2)
+  puts "Target: #{target}. Limit: #{limit}"
   primes = Prime::Cache.new(limit).primes
 
   agent = Agent.new
@@ -116,17 +134,12 @@ def count_given_last(last)
     end
   end
 
-  agent.solutions.length
-end
-
-def main
-  limit = 45
-  total = 0
-  (3..limit).each do |last|
-    puts "Last number: #{last}"
-    total += count_given_last(last)
+  puts "Solutions:" 
+  agent.solutions.each do |solution|
+    puts solution.inspect
   end
-  p total
+  
+  puts "Solution count: #{agent.solutions.length}"
 end
 
 puts Benchmark.measure { main }
