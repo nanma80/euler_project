@@ -102,8 +102,8 @@ class Agent
 end
 
 def main
-  limit = 55
-  # iteration_count = limit
+  limit = 45
+  iteration_count = limit
 
   target = Rational(1, 2)
   puts "Target: #{target}. Limit: #{limit}"
@@ -121,34 +121,22 @@ def main
   end
 
   states = [[original_state, current_sum, max_possible]]
-  # tick = Time.new
-  counter = 0
-  until states.empty?
-    counter += 1
-    if counter % 100000 == 0
-      puts "Queue length: #{states.length}"
+  tick = Time.new
+  iteration_count.times do |iteration|
+    tock = Time.new
+    puts "#{iteration}\t#{states.length}\t#{tock - tick}"
+    tick = tock
+    break if states.empty?
+
+    new_states = []
+    states.each do |state|
+      agent.each_candidate(state, target, primes) do |candidate|
+        new_states << candidate
+      end
     end
-    state = states.shift
-    agent.each_candidate(state, target, primes) do |candidate|
-      states << candidate
-    end
+
+    states = new_states
   end
-
-  # iteration_count.times do |iteration|
-  #   tock = Time.new
-  #   puts "#{iteration}\t#{states.length}\t#{tock - tick}"
-  #   tick = tock
-  #   break if states.empty?
-
-  #   # new_states = []
-  #   states.each do |state|
-  #     agent.each_candidate(state, target, primes) do |candidate|
-  #       new_states << candidate
-  #     end
-  #   end
-
-  #   # states = new_states
-  # end
 
   puts "Solutions:" 
   agent.solutions.each do |solution|
