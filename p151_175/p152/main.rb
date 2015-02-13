@@ -88,6 +88,8 @@ class Agent
           puts "Found: #{print(candidate)}"
           @solutions << print(candidate)
           return
+        elsif new_current_sum > target
+          next
         end
       else
         new_max_possible -= Rational(1, branching_index * branching_index)
@@ -103,7 +105,6 @@ end
 
 def main
   limit = 55
-  # iteration_count = limit
 
   target = Rational(1, 2)
   puts "Target: #{target}. Limit: #{limit}"
@@ -121,34 +122,17 @@ def main
   end
 
   states = [[original_state, current_sum, max_possible]]
-  # tick = Time.new
   counter = 0
   until states.empty?
     counter += 1
-    if counter % 100000 == 0
-      puts "Queue length: #{states.length}"
+    if counter % 1_000_000 == 0
+      puts "Queue length: #{states.length}. Number of states visited: #{counter}"
     end
-    state = states.shift
+    state = states.pop
     agent.each_candidate(state, target, primes) do |candidate|
       states << candidate
     end
   end
-
-  # iteration_count.times do |iteration|
-  #   tock = Time.new
-  #   puts "#{iteration}\t#{states.length}\t#{tock - tick}"
-  #   tick = tock
-  #   break if states.empty?
-
-  #   # new_states = []
-  #   states.each do |state|
-  #     agent.each_candidate(state, target, primes) do |candidate|
-  #       new_states << candidate
-  #     end
-  #   end
-
-  #   # states = new_states
-  # end
 
   puts "Solutions:" 
   agent.solutions.each do |solution|

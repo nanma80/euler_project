@@ -88,6 +88,8 @@ class Agent
           puts "Found: #{print(candidate)}"
           @solutions << print(candidate)
           return
+        elsif new_current_sum > target
+          next
         end
       else
         new_max_possible -= Rational(1, branching_index * branching_index)
@@ -102,7 +104,7 @@ class Agent
 end
 
 def main
-  limit = 45
+  limit = 35
   iteration_count = limit
 
   target = Rational(1, 2)
