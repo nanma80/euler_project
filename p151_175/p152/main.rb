@@ -90,7 +90,7 @@ def count_given_last(last)
   limit = last - 1
 
   target = Rational(1, 2) - Rational(1, last * last)
-  primes = Prime::Cache.new(limit).primes
+  primes = Prime::Cache.new(last).primes
 
   agent = Agent.new
   original_state = [nil] * (limit + 1)
@@ -120,7 +120,7 @@ def count_given_last(last)
 end
 
 def main
-  limit = 45
+  limit = 55
   total = 0
   (3..limit).each do |last|
     puts "Last number: #{last}"
