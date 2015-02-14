@@ -98,6 +98,10 @@ def count_given_last(last)
     original_state[false_index] = false
   end
   current_sum = Rational(0, 1)
+  # 2 must be in
+  original_state[2] = true
+  current_sum += Rational(1, 2 * 2)
+
   max_possible = Rational(0, 1)
   (2..limit).each do |k|
     max_possible += Rational(1, k * k)
@@ -107,10 +111,11 @@ def count_given_last(last)
   counter = 0
   until states.empty?
     counter += 1
-    if counter % 1_000_000 == 0
-      puts "Queue length: #{states.length}. Number of states visited: #{counter}"
-    end
     state = states.pop
+    if counter % 1_000_000 == 0
+      puts "Queue length: #{states.length}. Visited #{counter} states. Current state: #{agent.print(state.first) + [last]}"
+    end
+
     agent.each_candidate(state, target, primes) do |candidate|
       states << candidate
     end
@@ -120,10 +125,10 @@ def count_given_last(last)
 end
 
 def main
-  limit = 55
+  limit = 65
   total = 0
-  (3..limit).each do |last|
-    puts "Last number: #{last}"
+  (34..limit).each do |last|
+    puts "Last number: #{last}. Current total: #{total}"
     total += count_given_last(last)
   end
   p total
