@@ -1,0 +1,22 @@
+http://oeis.org/A078930
+
+If a + bi divides n, then
+
+gamma = gcd(a, b)
+a = alpha gamma
+b = beta gamma
+alpha and beta are coprime
+
+n/(a + bi) = (na - nbi)/(a^2 + b^2) 
+= (alpha n - beta n i)/((alpha^2 + beta^2)*gamma)
+
+Suppose n can't divide denominator = ((alpha^2 + beta^2)*gamma)
+and n/denominator reduces to n'/d' where d' > 1. Then d' must divide both alpha and beta, which contradicts to the assumption that alpha and beta are coprime.
+
+Therefore n = k * ((alpha^2 + beta^2)*gamma)
+
+For any alpha, find beta <= alpha such that alpha and beta are coprime.
+For any gamma >= 1 and k >= 1,
+(alpha gamma  + or - i * beta gamma ) is a factor of n = k * ((alpha^2 + beta^2)*gamma)
+(beta gamma   + or - i * alpha gamma) is a factor of n = k * ((alpha^2 + beta^2)*gamma)
+
