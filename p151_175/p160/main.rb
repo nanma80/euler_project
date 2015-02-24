@@ -37,7 +37,7 @@ def factorial_last_digits(n, digit_count)
 end
 
 def main
-  n = (10 ** 9)
+  n = (10 ** 6)
   p factorial_last_digits(n, 5)
 end
 
