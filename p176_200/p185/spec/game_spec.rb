@@ -52,4 +52,10 @@ describe 'Game' do
     expect(game.check([7, 9, 5, 4, 2])).to be false
     expect(game.check([3, 9, 5, 3, 2])).to be false
   end
+
+  it 'should compute distance' do
+    expect(game.distance([3, 9, 5, 4, 2])).to eq 0
+    expect(game.distance([7, 9, 5, 4, 2])).to eq 3
+    expect(game.distance([3, 9, 5, 3, 2])).to eq 3
+  end
 end
