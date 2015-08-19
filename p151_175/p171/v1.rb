@@ -7,11 +7,14 @@ def brute_force(limit)
     digit_square_sum = digits.map{|d| d * d}.inject(:+)
     sqrt = (Math.sqrt(digit_square_sum) + 0.4999).to_i
     if digit_square_sum == sqrt * sqrt
-      print "#{n}, "
+      puts n
       sum = (sum + n) % mod
     end
   end
   sum
 end
 
-p brute_force(10 ** 3)
+limit = 10 ** 2
+
+puts "limit: #{limit}"
+puts "sum: #{brute_force(limit)}"
