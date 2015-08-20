@@ -21,7 +21,7 @@ class Agent
       # start_time0 = Time.now
 
       combination_counter += 1
-      if combination_counter % 100000 == 0
+      if combination_counter % 1000 == 0
         puts "#{combination_counter * 100 / total_count}%\t#{Time.now}"
       end
       
@@ -52,26 +52,50 @@ class Agent
   end
 
   def hit?(count)
-    result = @targets.include?(square_sum(count))
-    result
+    @targets.include?(square_sum(count))
   end
 
+  def to_a(count)
+    array = []
+    count.each_with_index do |c, index|
+      array += [index] * c
+    end
+    array
+  end
+
+  def all_combos(count)
+    all_combos = Set.new
+    to_a(count).permutation do |perm|
+      all_combos << perm.map(&:to_s).join.to_i
+    end
+    all_combos
+  end
 end
 
-length = 3  # should be 20
 
+length = 4  # should be 20
+mod = 10 ** 9
 counter = 0
 agent = Agent.new(length)
+sum = 0
+
 start_time = Time.now
 agent.each_count_vector do |count|
-  # start_time1 = Time.now
   if agent.hit?(count)
-    p [count, agent.square_sum(count)]
+    sub_sum = 0
+    agent.all_combos(count).each do |number|
+      sub_sum += number
+      sum += (number % mod)
+    end
+    array = agent.to_a(count)
+    p [count, agent.square_sum(count), array, sub_sum, sub_sum / ('1' * length).to_i, array.inject(:+)]
     counter += 1
   end
-  # agent.times[1] += Time.now - start_time1
 end
 
+
+sum %= mod
 
 p counter
 p Time.now - start_time
+p sum
