@@ -14,7 +14,7 @@ def brute_force(limit)
   sum
 end
 
-limit = 10 ** 5
+limit = 10 ** 3
 
 puts "limit: #{limit}"
 puts brute_force(limit)

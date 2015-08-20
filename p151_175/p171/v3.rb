@@ -18,10 +18,8 @@ class Agent
     combination_counter = 0
 
     (1..length + 9).to_a.combination(9) do |separators|
-      # start_time0 = Time.now
-
       combination_counter += 1
-      if combination_counter % 1000 == 0
+      if combination_counter % 1000000 == 0
         puts "#{combination_counter * 100 / total_count}%\t#{Time.now}"
       end
       
@@ -37,7 +35,6 @@ class Agent
       end
       count << length + 9 - previous
 
-      # @times[0] += Time.now - start_time0
       yield count
     end
   end
@@ -63,6 +60,23 @@ class Agent
     array
   end
 
+  def multinomial(count)
+    output = count.inject(:+).factorial
+    count.each do |c|
+      output /= c.factorial
+    end
+    output
+  end
+
+  def perm_sum(count)
+    output = multinomial(count)
+    weighted_sum = 0
+    count.each_with_index do |c, index|
+      weighted_sum += c * index
+    end
+    output * weighted_sum / count.inject(:+)
+  end
+
   def all_combos(count)
     all_combos = Set.new
     to_a(count).permutation do |perm|
@@ -73,29 +87,21 @@ class Agent
 end
 
 
-length = 4  # should be 20
+length = 20  # should be 20
 mod = 10 ** 9
-counter = 0
 agent = Agent.new(length)
 sum = 0
 
 start_time = Time.now
 agent.each_count_vector do |count|
   if agent.hit?(count)
-    sub_sum = 0
-    agent.all_combos(count).each do |number|
-      sub_sum += number
-      sum += (number % mod)
-    end
-    array = agent.to_a(count)
-    p [count, agent.square_sum(count), array, sub_sum, sub_sum / ('1' * length).to_i, array.inject(:+)]
-    counter += 1
+    sum += agent.perm_sum(count)
   end
 end
 
-
+sum *= (10 ** length - 1) / 9
 sum %= mod
 
-p counter
+
 p Time.now - start_time
 p sum
