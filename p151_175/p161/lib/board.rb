@@ -14,8 +14,8 @@ class Board
     raise "Size #{size} not divisible by 3" unless size % 3 == 0
   end
 
-  def increase_duplicate_factor
-    @duplicate_factor += 1
+  def increase_duplicate_factor(increment)
+    @duplicate_factor += increment
   end
 
   def clone
