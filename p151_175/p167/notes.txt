@@ -1,0 +1,3 @@
+The Ulam sequences for such parameters are proven to be eventually periodic
+http://mathworld.wolfram.com/UlamSequence.html
+http://oeis.org/A007300
