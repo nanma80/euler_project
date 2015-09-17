@@ -1,3 +1,8 @@
 The Ulam sequences for such parameters are proven to be eventually periodic
 http://mathworld.wolfram.com/UlamSequence.html
 http://oeis.org/A007300
+https://oeis.org/A135737
+
+for k > t (what is t?)
+u[k] = u[k-floor((k-t)/p)*p] + floor((k-t)/p)*d
+
