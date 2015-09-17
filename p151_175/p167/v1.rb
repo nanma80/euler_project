@@ -21,4 +21,12 @@ def ulam(first, second, length)
   output
 end
 
-p ulam(2, 5, 10)
+period = 444
+fund_diff = 126
+seq = ulam(2, 9, 500)
+
+seq.each_with_index do |number, index|
+  if index >= period
+    p (number - seq[index - period])
+  end
+end
